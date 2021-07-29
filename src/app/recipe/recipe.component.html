@@ -1,0 +1,20 @@
+<ng-container *ngIf="recipes">
+  <div class="container" *ngFor="let recipe of recipes">
+    <div class="card" style="width: 18rem">
+      <img
+        class="card-img-top"
+        src="assets/images/breakfast.PNG"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ recipe.title }}</h5>
+        <p class="card-text">
+          {{ recipe.description }}
+        </p>
+        <a class="btn btn-primary" (click)="goToDetails(recipe.id)"
+          >See Full Receipe</a
+        >
+      </div>
+    </div>
+  </div>
+</ng-container>
