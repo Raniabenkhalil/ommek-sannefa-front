@@ -1,0 +1,51 @@
+.contact__form form input {
+    height: 46px;
+    width: 100% !important;
+    background: transparent;
+    border: 1px solid #e1e1e1;
+    font-size: 14px;
+    color: #444444;
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+  .contact__form form textarea {
+    height: 180px;
+    width: 100%;
+    background: transparent;
+    border: 1px solid #e1e1e1;
+    font-size: 14px;
+    color: #444444;
+    padding-top: 12px;
+    padding-left: 20px;
+    margin-bottom: 14px;
+    resize: none;
+  }
+  .contact__form form button {
+    width: 100%;
+  }
+  .container {
+    display: flex;
+    justify-content: space-around;
+  }
+.p-field-checkbox{
+    display: flex;
+    
+}
+.booking-form .form-checkbox input {
+	position: absolute !important;
+	margin-left: -9999px !important;
+	visibility: hidden !important;
+}
+.labelRadio{
+    float: left;
+}
+.row{
+    justify-content: space-around;
+    width: inherit;
+}
+.single-post__leave__comment div h4 {
+  left: 700px;
+}
+.ui-radiobutton-icon	{
+  size:10px;
+}

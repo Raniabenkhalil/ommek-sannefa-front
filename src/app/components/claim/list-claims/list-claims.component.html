@@ -1,0 +1,30 @@
+<div class="card">
+    <p-dataView #dv [value]="claims" [paginator]="true" [rows]="9" filterBy="name">
+        <ng-template pTemplate="header">
+            <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+                <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+                    <i class="pi pi-search"></i>
+                    <input type="search" pInputText placeholder="Search by Name">
+                </span>
+                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+            </div>
+        </ng-template>
+        <ng-template let-claim pTemplate="listItem">
+            <div class="p-col-12">
+                <div class="product-list-item">
+                    <div class="product-list-detail">
+                        <div class="product-name">{{claim.title}}</div>
+                        <div class="product-description">{{claim.description}}</div>
+                        <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{claim.category}}</span>
+                    </div>
+                    <div class="product-list-action">
+                        <span class="product-price">{{claim.status}}</span>
+                        <div class="header__btn add_recipe">
+                            <a (click)="showDetails(claim.id)" class="primary-btn">Details</a>
+                        </div>
+                        <span>{{claim.status}}</span>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>

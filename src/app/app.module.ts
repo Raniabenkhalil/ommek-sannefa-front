@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ClaimComponent } from './components/claim/claim.component';
+import { AddClaimComponent } from './components/claim/add-claim.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu/menu.component';
 import { FooterComponent } from './footer/footer/footer.component';
@@ -16,13 +16,25 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { HttpClientModule } from '@angular/common/http';
 import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
 import { DetailsComponent } from './recipes/details/details.component';
+
+import { ListClaimsComponent } from './components/claim/list-claims/list-claims.component';
+import {DataViewModule} from 'primeng/dataview';
+import {ButtonModule} from 'primeng/button';
+import {PanelModule} from 'primeng/panel';
+import {DropdownModule} from 'primeng/dropdown';
+import {DialogModule} from 'primeng/dialog';
+import {InputTextModule} from 'primeng/inputtext';
+import {RatingModule} from 'primeng/rating';
+import { ClaimDetailsComponent } from './components/claim/claim-details/claim-details.component';
+
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClaimComponent,
+    AddClaimComponent,
     HeaderComponent,
     MenuComponent,
     FooterComponent,
@@ -32,17 +44,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     AddRecipeComponent,
     DetailsComponent,
+    ListClaimsComponent,
+    ClaimDetailsComponent,
   ],
   imports: [
     BrowserAnimationsModule,
     NgSelectModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     ReactiveFormsModule,
     RadioButtonModule,
+    DataViewModule  ,
+    PanelModule,
+    DialogModule,
+    DropdownModule,
+    InputTextModule,
+    ButtonModule,
     HttpClientModule,
-  ],
+    RatingModule,
+    FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -3,11 +3,11 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 
 
 @Component({
-  selector: 'app-claim',
-  templateUrl: './claim.component.html',
-  styleUrls: ['./claim.component.css']
+  selector: 'app-add-claim',
+  templateUrl: './add-claim.component.html',
+  styleUrls: ['./add-claim.component.css']
 })
-export class ClaimComponent implements OnInit {
+export class AddClaimComponent implements OnInit {
   claimForm: FormGroup;
   categories: any[] = [{name: 'Technical',code: 1},{name: 'Customer',code: 2},{name: 'Quality',code: 3}, {name: 'Other',code: 4}];
 
