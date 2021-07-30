@@ -46,4 +46,13 @@ export class ClaimService {
       params: params,
     });
   }
+  getClaims(): Observable<Claim> {
+    return this.httpClient.get<Claim>(`http://127.0.0.1:8000/api/claims`);
+  }
+
+  getClaimById(id): Observable<Claim> {
+    return this.httpClient.get<Claim>(
+      `http://127.0.0.1:8000/api/claims/` + id
+    );
+  }
 }
