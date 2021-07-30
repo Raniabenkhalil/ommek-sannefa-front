@@ -16,6 +16,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { HttpClientModule } from '@angular/common/http';
 import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
 import { DetailsComponent } from './recipes/details/details.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { DetailsComponent } from './recipes/details/details.component';
     DetailsComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
+    NgSelectModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

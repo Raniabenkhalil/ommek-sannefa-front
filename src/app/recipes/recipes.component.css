@@ -11,4 +11,8 @@
 a.primary-btn:hover {
   background: #f4952f;
   color: #ffffff;
+  cursor: pointer;
+}
+a {
+  cursor: pointer;
 }

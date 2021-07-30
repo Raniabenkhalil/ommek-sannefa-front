@@ -11,6 +11,7 @@ import { RecipeService } from 'src/app/services/recipe.service';
 export class DetailsComponent implements OnInit {
   recipe: Recipe;
   recipeId;
+  direction;
   constructor(
     private recipeService: RecipeService,
     private route: ActivatedRoute
@@ -20,6 +21,7 @@ export class DetailsComponent implements OnInit {
     this.recipeId = this.route.snapshot.params['id'];
     this.recipeService.getRecipeById(this.recipeId).subscribe((next) => {
       this.recipe = next;
+      this.direction = this.recipe?.steps.split('.');
     });
   }
 }
