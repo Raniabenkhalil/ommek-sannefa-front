@@ -10,4 +10,9 @@ export class Recipe {
   preparationTime: number;
   servesNumPersons: number;
   recipeIngredients: any;
+  steps: string;
+}
+export class Ingredients {
+  id: string;
+  name: string;
 }

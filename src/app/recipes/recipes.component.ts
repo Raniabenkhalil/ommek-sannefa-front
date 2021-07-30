@@ -13,11 +13,14 @@ export class RecipesComponent implements OnInit {
   constructor(private recipeService: RecipeService, private router: Router) {}
 
   ngOnInit(): void {
-    this.recipeService.getRecipes().subscribe((next) => {
-      this.recipes = next['hydra:member'];
-    });
+    this.filterByCategory('all');
   }
   details(recipeId) {
     this.router.navigate(['details/' + recipeId]);
+  }
+  filterByCategory(category) {
+    this.recipeService.getRecipes(category).subscribe((next) => {
+      this.recipes = next['hydra:member'];
+    });
   }
 }

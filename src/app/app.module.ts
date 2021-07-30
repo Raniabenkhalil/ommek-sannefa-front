@@ -16,6 +16,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { HttpClientModule } from '@angular/common/http';
 import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
 import { DetailsComponent } from './recipes/details/details.component';
+
 import { ListClaimsComponent } from './components/claim/list-claims/list-claims.component';
 import {DataViewModule} from 'primeng/dataview';
 import {ButtonModule} from 'primeng/button';
@@ -25,6 +26,10 @@ import {DialogModule} from 'primeng/dialog';
 import {InputTextModule} from 'primeng/inputtext';
 import {RatingModule} from 'primeng/rating';
 import { ClaimDetailsComponent } from './components/claim/claim-details/claim-details.component';
+
+import { NgSelectModule } from '@ng-select/ng-select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -43,6 +48,8 @@ import { ClaimDetailsComponent } from './components/claim/claim-details/claim-de
     ClaimDetailsComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
+    NgSelectModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
