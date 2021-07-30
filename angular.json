@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ommek-sannefa"
+    }
+  },
+  "defaultProject": "ommek-sannefa",
+  "cli": {
+    "analytics": false
+  }
 }

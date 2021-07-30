@@ -12,8 +12,10 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { ArticleComponent } from './article/article/article.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { HomeComponent } from './home/home.component';
-import {RadioButtonModule} from 'primeng/radiobutton';
-
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { HttpClientModule } from '@angular/common/http';
+import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
+import { DetailsComponent } from './recipes/details/details.component';
 
 @NgModule({
   declarations: [
@@ -25,16 +27,19 @@ import {RadioButtonModule} from 'primeng/radiobutton';
     RecipesComponent,
     ArticleComponent,
     CarouselComponent,
-    HomeComponent
+    HomeComponent,
+    AddRecipeComponent,
+    DetailsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    RadioButtonModule
+    RadioButtonModule,
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

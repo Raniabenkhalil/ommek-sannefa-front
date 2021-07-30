@@ -1,0 +1,14 @@
+.add_custom {
+  background-color: transparent;
+  cursor: pointer;
+}
+.position {
+  padding-top: 0px;
+}
+.cstm_img {
+  height: 88%;
+}
+a.primary-btn:hover {
+  background: #f4952f;
+  color: #ffffff;
+}
