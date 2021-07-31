@@ -17,9 +17,9 @@ export class AddClaimComponent implements OnInit {
   ngOnInit(): void {
 
     this.claimForm = new FormGroup({
-      title: new FormControl(''),
-      description: new FormControl(''),
-      category: new FormControl(''),
+      title: new FormControl('',Validators.required),
+      description: new FormControl('',Validators.required),
+      category: new FormControl('', Validators.required),
       status: new FormControl('')
     });
   }

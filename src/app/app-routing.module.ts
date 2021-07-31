@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
 import { DetailsComponent } from './recipes/details/details.component';
 import { RecipesComponent } from './recipes/recipes.component';
+import { SigninComponent } from './user/signin/signin.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'addClaim',
     component: AddClaimComponent,
+  },
+  {
+    path: 'signin',
+    component: SigninComponent,
   },
   {
     path: 'details/:id',

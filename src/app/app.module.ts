@@ -29,6 +29,8 @@ import { ClaimDetailsComponent } from './components/claim/claim-details/claim-de
 
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserComponent } from './user/user.component';
+import { SigninComponent } from './user/signin/signin.component';
 
 
 @NgModule({
@@ -46,6 +48,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DetailsComponent,
     ListClaimsComponent,
     ClaimDetailsComponent,
+    UserComponent,
+    SigninComponent,
   ],
   imports: [
     BrowserAnimationsModule,

@@ -7,22 +7,18 @@
             <div class="contact__form">
                 <form [formGroup]="claimForm">
                     <div class="form-group">
-                        <div class="row">
-                            <div *ngFor="let category of categories" class="p-field-checkbox" style="display:inline">
-                                <span class="col-md-4">
-                                    <label class='labelRadio' [for]="category.id">{{category.name}}</label>
-                                    <p-radioButton [inputId]="category.name" name="category" [value]="category"
-                                        formControlName="category">
-                                    </p-radioButton>
-                                </span>
-                            </div>
-                        </div>
+                        <select class="form-select" id="category" name="category" formControlName="category">
+                            <option value="" disabled selected>Select the category</option>
+                            <option *ngFor="let category of categories" [value]="category.id" value={{category}}>
+                                {{category.name}}
+                            </option>
+                        </select>
                         <div>
                             <input type="text" placeholder="Claim title" formControlName="title">
                         </div>
                     </div>
                     <textarea formControlName="description" placeholder="Description"></textarea>
-                    <button class="site-btn" type="submit" (click)="onSubmit()">Submit</button>
+                    <button (click)="onSubmit()" [disabled]="!claimForm.valid" type="submit" class="site-btn">Submit</button>
                 </form>
             </div>
         </div>
