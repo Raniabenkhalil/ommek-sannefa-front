@@ -13,49 +13,51 @@
                 <span>Recipes</span>
               </div>
             </div>
-            <div
-              class="categories__list__post__item"
-              *ngFor="let receipe of recipes"
-            >
-              <div class="row">
-                <div class="col-lg-6 col-md-6">
-                  <div class="categories__post__item__pic set-bg">
-                    <img
-                      class="cstm_img"
-                      src="./assets/img/categories/categories-list/{{
-                        receipe.image
-                      }}"
-                    />
-                    <div class="post__meta">
-                      <h4>08</h4>
-                      <span>Aug</span>
+            <ng-container *ngIf="recipes">
+              <div
+                class="categories__list__post__item"
+                *ngFor="let receipe of recipes"
+              >
+                <div class="row">
+                  <div class="col-lg-6 col-md-6">
+                    <div class="categories__post__item__pic set-bg">
+                      <img
+                        class="cstm_img"
+                        src="http://192.168.1.12:8000{{
+                          receipe?.image?.contentUrl
+                        }}"
+                      />
+                      <div class="post__meta">
+                        <h4>08</h4>
+                        <span>Aug</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                  <div class="categories__post__item__text">
-                    <span class="post__label">{{ receipe.category }}</span>
-                    <h3>
-                      <a href="#">{{ receipe.title }}</a>
-                    </h3>
-                    <ul class="post__widget">
-                      <li>by <span>Admin</span></li>
-                    </ul>
-                    <p>
-                      {{ receipe.description }}
-                    </p>
-                    <div class="header__btn position">
-                      <a
-                        class="primary-btn add_custom"
-                        (click)="details(receipe.id)"
-                      >
-                        Check the recipe
-                      </a>
+                  <div class="col-lg-6 col-md-6">
+                    <div class="categories__post__item__text">
+                      <span class="post__label">{{ receipe.category }}</span>
+                      <h3>
+                        <a href="#">{{ receipe.title }}</a>
+                      </h3>
+                      <ul class="post__widget">
+                        <li>by <span>Admin</span></li>
+                      </ul>
+                      <p>
+                        {{ receipe.description }}
+                      </p>
+                      <div class="header__btn position">
+                        <a
+                          class="primary-btn add_custom"
+                          (click)="details(receipe.id)"
+                        >
+                          Check the recipe
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </ng-container>
 
             <!-- <div class="row">
               <div class="col-lg-12">
@@ -99,28 +101,37 @@
                 </div>
                 <ul>
                   <li>
-                    <a href="#">Recipes <span>128</span></a>
+                    <a (click)="filterByCategory('all')"
+                      >Recipes <span>128</span></a
+                    >
                   </li>
                   <li>
-                    <a href="#">Dinner <span>32</span></a>
+                    <a (click)="filterByCategory('Maindish')"
+                      >Main Dish <span>32</span></a
+                    >
                   </li>
                   <li>
-                    <a href="#">Dessert <span>86</span></a>
+                    <a>Side Dish <span>86</span></a>
                   </li>
                   <li class="p-left">
-                    <a href="#">Smothie <span>25</span></a>
+                    <a>Appetizer <span>25</span></a>
                   </li>
                   <li class="p-left">
-                    <a href="#">Drinks <span>36</span></a>
+                    <a>Soup <span>36</span></a>
                   </li>
                   <li class="p-left">
-                    <a href="#">Cakes <span>15</span></a>
+                    <a>Salad <span>15</span></a>
                   </li>
                   <li>
-                    <a href="#">Vegan <span>63</span></a>
+                    <a>Dessert <span>63</span></a>
                   </li>
                   <li>
-                    <a href="#">Weightloss <span>27</span></a>
+                    <a>Drink <span>27</span></a>
+                  </li>
+                  <li>
+                    <a (click)="filterByCategory('Other')"
+                      >Other <span>27</span></a
+                    >
                   </li>
                 </ul>
               </div>

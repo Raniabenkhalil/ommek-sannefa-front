@@ -1,16 +1,203 @@
 <div class="container">
-  <div class="col-lg-6 col-md-6">
+  <div class="col-lg-8 col-md-6">
     <div class="contact__form">
       <div class="contact__form__title">
         <h2>Add your own recipe</h2>
       </div>
-      <form action="#">
-        <input type="text" placeholder="Title" />
-        <textarea placeholder="Description"></textarea>
-        <input type="number" min="0" placeholder="Preperation time" />
-        <input type="text" placeholder="Catgory" />
-
-        <button type="submit" class="site-btn">Submit</button>
+      <form [formGroup]="recipeForm" action="#">
+        <input
+          type="text"
+          name="title"
+          id="title"
+          placeholder="Recipe Name"
+          formControlName="title"
+        />
+        <small
+          *ngIf="title.errors?.required && (title.touched || title.dirty)"
+          style="margin-top: -20px; font-size: 11px; margin-bottom: 11px"
+          class="form-text text-danger"
+          >The recipe name is required</small
+        >
+        <textarea
+          placeholder="Description"
+          formControlName="description"
+          id="description"
+          name="description"
+        ></textarea>
+        <div class="row" style="height: 43px">
+          <label
+            for="avatar"
+            class="col-1"
+            style="font-weight: 600; margin-left: 5px"
+            >Image</label
+          >
+          <input
+            style="border: none"
+            class="col-5"
+            type="file"
+            id="file"
+            name="avatar"
+            (change)="onFileSelect($event)"
+            accept="image/png, image/jpeg"
+          />
+        </div>
+        <small
+          *ngIf="
+            description.errors?.required &&
+            (description.touched || description.dirty)
+          "
+          style="margin-top: -20px; font-size: 11px; margin-bottom: 11px"
+          class="form-text text-danger"
+          >The description is required</small
+        >
+        <input
+          type="number"
+          min="0"
+          placeholder="Preperation Time"
+          formControlName="preparationTime"
+        />
+        <input type="number" min="0" placeholder="No. of Servings" />
+        <select class="form-select">
+          <option value="" disabled selected>Difficulty</option>
+          <option value="Easy">Easy</option>
+          <option value="Moderate">Moderate</option>
+          <option value="Hard">Hard</option>
+        </select>
+        <select
+          class="form-select"
+          id="category"
+          name="category"
+          formControlName="category"
+        >
+          <option value="" disabled selected>Dish Type</option>
+          <option value="Main Dish">Main Dish</option>
+          <option value="Side Dish">Side Dish</option>
+          <option value="Appetizer">Appetizer</option>
+          <option value="Soup">Soup</option>
+          <option value="Salad">Salad</option>
+          <option value="Dessert">Dessert</option>
+          <option value="Drink">Drink</option>
+          <option value="Other">other</option>
+        </select>
+        <small
+          *ngIf="
+            category.errors?.required && (category.touched || category.dirty)
+          "
+          style="margin-top: -20px; font-size: 11px; margin-bottom: 11px"
+          class="form-text text-danger"
+          >The category is required</small
+        >
+        <form
+          [formGroup]="ingredientForm"
+          class="row"
+          style="padding-left: 14px"
+        >
+          <input
+            class="col-2"
+            type="number"
+            min="0"
+            id="quantity"
+            name="quantity"
+            placeholder="No."
+            formControlName="quantity"
+          />
+          <select
+            class="col-3 form-select"
+            aria-label="Dish Type"
+            style="margin-left: 5px"
+            formControlName="unit"
+            id="unit"
+            name="unit"
+            required
+          >
+            <option value="" disabled selected>Unit</option>
+            <option value="litre">litre</option>
+            <option value="kg">kg</option>
+            <option value="piece">piece</option>
+            <option value="cup">cup</option>
+            <option value="spoon">spoon</option>
+            <option value="cof_sp">coffe spoon</option>
+          </select>
+          <ng-select
+            class="ng-select"
+            [items]="ingredients"
+            [multiple]="true"
+            bindLabel="name"
+            formControlName="ingredient"
+            bindValue="name"
+            required
+          >
+          </ng-select>
+          <!--small
+            *ngIf="
+              quantity.errors?.required && (quantity.touched || quantity.dirty)
+            "
+            style="margin-top: -20px; font-size: 11px; margin-bottom: 11px"
+            class="form-text text-danger"
+            >The category is required</small
+          -->
+          <!--select
+            class="col-4 form-select"
+            aria-label="Dish Type"
+            style="margin-left: 5px"
+            formControlName="ingredient"
+          >
+            <option value="" disabled selected>Ingredients</option>
+            <option *ngFor="let ing of ingredients" [value]="ing.name">
+              {{ ing.name }}
+            </option>
+          </select-->
+          <div class="col-2">
+            <a
+              (click)="addIngredient()"
+              class="primary-btn"
+              style="
+                height: 45px;
+                display: flex;
+                padding-left: 31px;
+                align-content: flex-start;
+                align-items: flex-start;
+                flex-direction: column;
+                justify-content: space-around;
+              "
+              >Add
+            </a>
+          </div>
+        </form>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Qts</th>
+              <th scope="col">Unit</th>
+              <th scope="col">Ingredient</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="_ingredients.length > 0; else empty">
+            <tr *ngFor="let ing of _ingredients">
+              <th scope="row">{{ ing.quantity }}</th>
+              <td>{{ ing.unit }}</td>
+              <td>{{ ing.ingredient }}</td>
+            </tr>
+          </tbody>
+          <ng-template #empty>
+            <tbody>
+              No Data
+            </tbody>
+          </ng-template>
+        </table>
+        <div class="alert alert-success" role="alert">
+          you'r recipe is added successfully, waiting for approuvement from the
+          admin
+        </div>
+        <button
+          (click)="save()"
+          [disabled]="!recipeForm.valid"
+          type="submit"
+          class="site-btn"
+        >
+          Submit
+        </button>
       </form>
     </div>
   </div>

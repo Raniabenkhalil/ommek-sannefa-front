@@ -20,6 +20,8 @@ import { NewArticleComponent } from './article/article/new-article/new-article.c
 import { DetailsArticleComponent } from './article/article/details-article/details-article.component';
 import { UpdateArticleComponent } from './article/article/update-article/update-article.component';
 import { ArticleListComponent } from './article/article/article-list/article-list.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { ArticleListComponent } from './article/article/article-list/article-lis
     ArticleListComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
+    NgSelectModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
