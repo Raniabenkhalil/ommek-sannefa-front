@@ -11,6 +11,7 @@ export class Recipe {
   servesNumPersons: number;
   recipeIngredients: any;
   steps: string;
+  isActive: boolean;
 }
 export class Ingredients {
   id: string;

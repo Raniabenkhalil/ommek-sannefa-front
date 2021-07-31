@@ -9,7 +9,7 @@ import { User } from '../models/user';
 })
 export class RecipeService {
   constructor(protected httpClient: HttpClient) {}
-  getRecipes(category: string): Observable<Recipe> {
+  getRecipes(category: string): Observable<any> {
     if (category === 'all') {
       return this.httpClient.get<Recipe>(
         `http://192.168.1.12:8000/api/recipes`
@@ -19,6 +19,11 @@ export class RecipeService {
         `http://192.168.1.12:8000/api/recipes?category=` + category
       );
     }
+  }
+  myRecipes(userId): Observable<Recipe> {
+    return this.httpClient.get<Recipe>(
+      `http://192.168.1.12:8000/api/recipes?user=` + userId
+    );
   }
   getIngredients(): Observable<Ingredients> {
     return this.httpClient.get<Ingredients>(
@@ -40,6 +45,17 @@ export class RecipeService {
     return this.httpClient.post<any>(
       'http://192.168.1.12:8000/api/media_objects',
       formData
+    );
+  }
+  approuve(id, actif) {
+    return this.httpClient.put<Recipe>(
+      `http://192.168.1.12:8000/api/recipes/` + id,
+      actif
+    );
+  }
+  deleteRecipe(id): Observable<Recipe> {
+    return this.httpClient.delete<Recipe>(
+      `http://192.168.1.12:8000/api/recipes/` + id
     );
   }
 }

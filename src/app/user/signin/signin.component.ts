@@ -9,6 +9,9 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./signin.component.css'],
 })
 export class SigninComponent implements OnInit {
+  exist;
+  click;
+  control;
   userForm: FormGroup = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
@@ -19,7 +22,7 @@ export class SigninComponent implements OnInit {
     ]),
     password: new FormControl('', [
       Validators.required,
-      /* Validators.pattern(
+      /*Validators.pattern(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}/
       ),*/
     ]),
@@ -46,10 +49,29 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {}
   save() {
     const userFormValue = { ...this.userForm.getRawValue() };
-    this.userService
-      .addUser(userFormValue)
-      .subscribe((res) => this.router.navigate(['']));
+
+    this.exist = false;
+    this.click = false;
+    this.control = '';
+
+    this.userService.getAll().subscribe((next) =>
+      next['hydrat:member'].map((r) => {
+        if (r.email == userFormValue.email.value) {
+          this.exist = true;
+        }
+      })
+    );
+
+    if (!this.exist) {
+      this.userService.addUser(userFormValue).subscribe((res) => {
+        localStorage.setItem('currentUser', JSON.stringify(res));
+        this.router.navigate(['']);
+      });
+    } else {
+      this.control = 'Ce mail existe déja !';
+    }
   }
+
   signin(): void {
     this.userService.getAll().subscribe((res) => {
       res['hydra:member'].map((r) => {

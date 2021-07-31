@@ -22,7 +22,9 @@ export class UserService {
   getAll(): Observable<User[]> {
     return this.myhttp.get<User[]>(this.api_url + '/users');
   }
-
+  getUserById(id): Observable<User> {
+    return this.myhttp.get<User>(this.api_url + '/users/' + id);
+  }
   submit(
     civility: any,
     lastName: any,
@@ -50,34 +52,11 @@ export class UserService {
     );
   }
 
-  updateUser(
-    id: any,
-    civility: any,
-    lastName: any,
-    firstName: any,
-    email: any,
-    password: any
-  ) {
-    let formdata = {
-      id: id,
-      civiity: civility,
-      lastName: lastName,
-      firstName: firstName,
-      email: email,
-      password: password,
-    };
-
-    // console.log(JSON.stringify(formdata));
-    return this.myhttp
-      .put(this.api_url + `users/` + id, formdata, httpHeaders)
-      .pipe(
-        map((event) => {
-          return event;
-        })
-      );
+  updateUser(user, userId) {
+    return this.myhttp.put<User>(this.api_url + '/users/' + userId, user);
   }
 
   deleteUser(i: number): Observable<User> {
-    return this.myhttp.delete<User>('http://192.168.1.12:8000/api/users/' + i);
+    return this.myhttp.delete<User>(this.api_url + '/users/' + i);
   }
 }

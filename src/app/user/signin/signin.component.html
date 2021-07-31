@@ -5,10 +5,7 @@
       <div class="signin__logo">
         <a href="#"><img src="img/siign-in-logo.png" alt="" /></a>
       </div>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt labore dolore magna aliqua viverra.
-      </p>
+      <p>Welcome to Ommek Hourria</p>
       <div class="signin__form">
         <ul class="nav nav-tabs" role="tablist">
           <li class="nav-item">
@@ -159,7 +156,11 @@
                   class="form-text text-danger"
                   >Password is required</small
                 >
-
+                <div class="checkbox mb-3" *ngIf="click">
+                  <div class="alert alert-danger" role="alert">
+                    {{ control }}
+                  </div>
+                </div>
                 <button
                   type="submit"
                   [disabled]="!userForm.valid"

@@ -10,6 +10,7 @@ import { RecipeService } from 'src/app/services/recipe.service';
 })
 export class AddRecipeComponent implements OnInit {
   test = false;
+
   recipeForm: FormGroup = new FormGroup({
     user: new FormControl(),
     title: new FormControl('', Validators.required),
@@ -18,6 +19,7 @@ export class AddRecipeComponent implements OnInit {
     image: new FormControl(),
     category: new FormControl('', Validators.required),
     preparationTime: new FormControl(),
+    steps: new FormControl('', Validators.required),
   });
   ingredientForm: FormGroup = new FormGroup({
     unit: new FormControl('', Validators.required),
@@ -26,6 +28,7 @@ export class AddRecipeComponent implements OnInit {
   });
   _ingredients = [];
   ingredients: Ingredients;
+  currentUser;
 
   get user() {
     return this.recipeForm.get('user');
@@ -52,14 +55,17 @@ export class AddRecipeComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
 
   addIngredient() {
     const ingredientFormValue = { ...this.ingredientForm.getRawValue() };
+
     this._ingredients.push(ingredientFormValue);
   }
   save() {
-    this.recipeForm.get('user').setValue('/api/users/1');
+    this.recipeForm.get('user').setValue('/api/users/' + this.currentUser.id);
     const recipeFormValue = { ...this.recipeForm.getRawValue() };
     this.recipeService.addRecipe(recipeFormValue).subscribe(
       (res) => (this.test = true),
