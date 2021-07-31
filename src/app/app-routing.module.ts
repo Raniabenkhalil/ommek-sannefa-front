@@ -4,6 +4,7 @@ import { Carousel } from 'primeng';
 import { CarouselComponent } from './carousel/carousel.component';
 import { AddClaimComponent } from './components/claim/add-claim.component';
 import { ClaimDetailsComponent } from './components/claim/claim-details/claim-details.component';
+import { ListClaimsComponent } from './components/claim/list-claims/list-claims.component';
 import { FooterComponent } from './footer/footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: 'signin',
     component: SigninComponent,
+  },
+  {
+    path: 'listClaims',
+    component:ListClaimsComponent,
   },
   {
     path: 'details/:id',

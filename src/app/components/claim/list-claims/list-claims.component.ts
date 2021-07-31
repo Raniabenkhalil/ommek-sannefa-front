@@ -21,5 +21,7 @@ export class ListClaimsComponent implements OnInit {
   showDetails(claimid){
     this.router.navigate(['claimDetails/' + claimid]);
   }
-
+  deleteClaim(claimid){
+    this.claimService.deleteClaim(claimid).subscribe((res) => window.location.reload());
+  }
 }

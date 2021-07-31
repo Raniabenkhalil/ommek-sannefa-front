@@ -9,8 +9,8 @@
                     <div class="form-group">
                         <select class="form-select" id="category" name="category" formControlName="category">
                             <option value="" disabled selected>Select the category</option>
-                            <option *ngFor="let category of categories" [value]="category.id" value={{category}}>
-                                {{category.name}}
+                            <option *ngFor="let category of categories" value={{category}}>
+                                {{category}}
                             </option>
                         </select>
                         <div>

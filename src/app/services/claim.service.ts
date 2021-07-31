@@ -55,4 +55,14 @@ export class ClaimService {
       `http://127.0.0.1:8000/api/claims/` + id
     );
   }
+
+  deleteClaim(id): Observable<any>{
+ 
+    return this.httpClient.delete(`http://127.0.0.1:8000/api/claims/`+ id);
+ 
+  }
+  updateClaim(claimid,body) : Observable<any>{
+    return this.httpClient.put(`http://127.0.0.1:8000/api/claims/`+ claimid, body);
+ 
+  }
 }
