@@ -1,0 +1,38 @@
+<div class="main">
+    <h1>Article liste</h1>
+    
+    <!-- | paginate: { itemsPerPage: 6, currentPage: p } -->
+    <app-new-article (updated)="updatelist($event)"></app-new-article>
+    <ul class="cards">
+      <li
+        class="cards_item"
+        *ngFor="
+          let article of articleList
+            
+        "
+      >
+        <div class="card">
+          
+          <div class="badge" *ngIf="!article?.isactive">Not Available</div>
+          <div style="height: 200px;">
+            <img src="http://localhost:8000/uploads/{{ article.image }}" />
+          </div>
+          <div class="card_content">
+            <div class="listmenu">
+              <span class="glyphicon glyphicon-option-vertical"></span>
+            </div>
+  
+            <h2 class="card_title">{{ article.title }}</h2>
+            <p class="card_text">{{ article.description }}</p>
+            <a class="btn card_btn" [routerLink]="['/detailsArticle', article.id]"
+              >Read More</a
+            >
+          </div>
+        </div>
+      </li>
+    </ul>
+    <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+  </div>
+  
+  <h3 class="made_by">Made with ♡ :)</h3>
+  

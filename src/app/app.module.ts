@@ -16,6 +16,10 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { HttpClientModule } from '@angular/common/http';
 import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
 import { DetailsComponent } from './recipes/details/details.component';
+import { NewArticleComponent } from './article/article/new-article/new-article.component';
+import { DetailsArticleComponent } from './article/article/details-article/details-article.component';
+import { UpdateArticleComponent } from './article/article/update-article/update-article.component';
+import { ArticleListComponent } from './article/article/article-list/article-list.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,10 @@ import { DetailsComponent } from './recipes/details/details.component';
     HomeComponent,
     AddRecipeComponent,
     DetailsComponent,
+    NewArticleComponent,
+    DetailsArticleComponent,
+    UpdateArticleComponent,
+    ArticleListComponent,
   ],
   imports: [
     BrowserModule,

@@ -45,7 +45,7 @@
       140
     ],
     "member-ordering": [
-      true,
+      false,
       {
         "order": [
           "static-field",
@@ -65,9 +65,10 @@
     ],
     "no-empty": false,
     "no-inferrable-types": [
-      true,
+      false,
       "ignore-params"
     ],
+    "prefer-const": false,
     "no-non-null-assertion": true,
     "no-redundant-jsdoc": true,
     "no-switch-case-fall-through": true,
@@ -77,7 +78,7 @@
       "as-needed"
     ],
     "quotemark": [
-      true,
+      false,
       "single"
     ],
     "semicolon": {

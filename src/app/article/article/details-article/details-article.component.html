@@ -1,0 +1,38 @@
+<div class="card-wrapper">
+    <div class="card">
+      <!-- card left -->
+      <div class="product-imgs">
+        <div class="img-select">
+          <div class="img-item">
+            <a href="#" data-id="1">
+              <img
+                src="http://localhost:8000/uploads/{{article?.image}}"
+                alt="shoe image"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- card right -->
+      <div class="product-content">
+        <h2 class="product-title">{{article?.title}}</h2>
+        <a  class="product-link">{{article?.category}}</a>
+        
+        <div class="product-detail">
+          <h2>Description:</h2>
+          <p>
+            {{article?.description}}
+          </p>
+          
+          
+        </div>
+  
+        <div class="purchase-info"    *ngIf="article?.id">
+          <app-update-article [articleselected]="article" (updated)="updatelist($event)"></app-update-article>
+          
+          <button type="button" class="btn btn-info" (click)="delete(article?.id)">delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
