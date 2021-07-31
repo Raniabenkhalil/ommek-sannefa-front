@@ -1,4 +1,8 @@
 <!-- Categories Section Begin -->
+<div class="form-group ps-search-block open-ps-search">
+  <span class="fa fa-search form-control-feedback ps-search"></span>
+  <input type="text" class="form-control ps-query-input" #searchBar />
+</div>
 <section class="categories categories-grid spad">
   <div class="categories__post">
     <div class="container">
@@ -50,6 +54,14 @@
                           (click)="details(receipe.id)"
                         >
                           Check the recipe
+                        </a>
+                      </div>
+                      <div class="header__btn position">
+                        <a
+                          class="primary-btn add_custom"
+                          (click)="details(receipe.id)"
+                        >
+                          Approuve
                         </a>
                       </div>
                     </div>

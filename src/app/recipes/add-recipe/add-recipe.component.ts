@@ -9,12 +9,13 @@ import { RecipeService } from 'src/app/services/recipe.service';
   styleUrls: ['./add-recipe.component.scss'],
 })
 export class AddRecipeComponent implements OnInit {
-  selectedCar: number;
+  test = false;
   recipeForm: FormGroup = new FormGroup({
     user: new FormControl(),
     title: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
     difficulty: new FormControl(),
+    image: new FormControl(),
     category: new FormControl('', Validators.required),
     preparationTime: new FormControl(),
   });
@@ -28,6 +29,9 @@ export class AddRecipeComponent implements OnInit {
 
   get user() {
     return this.recipeForm.get('user');
+  }
+  get image() {
+    return this.recipeForm.get('image');
   }
   get quantity() {
     return this.ingredientForm.get('quantity');
@@ -57,11 +61,17 @@ export class AddRecipeComponent implements OnInit {
   save() {
     this.recipeForm.get('user').setValue('/api/users/1');
     const recipeFormValue = { ...this.recipeForm.getRawValue() };
-    this.recipeService.addRecipe(recipeFormValue);
+    this.recipeService.addRecipe(recipeFormValue).subscribe(
+      (res) => (this.test = true),
+      (err) => console.log(err)
+    );
   }
   onFileSelect(event) {
     const formData = new FormData();
     formData.append('file', event.target.files[0]);
-    this.recipeService.uploadFile(formData);
+    this.recipeService.uploadFile(formData).subscribe(
+      (res) => this.recipeForm.get('image').setValue(res['@id']),
+      (err) => console.log(err)
+    );
   }
 }

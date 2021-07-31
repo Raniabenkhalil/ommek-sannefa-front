@@ -3,7 +3,8 @@
   <img
     *ngIf="recipe?.image"
     class="single-post__hero set-bg"
-    src="../../../assets/img/categories/categories-list/{{ recipe?.image }}"
+    style="width: 100%"
+    src="http://192.168.1.12:8000{{ recipe?.image?.contentUrl }}"
   />
 
   <div class="container">
