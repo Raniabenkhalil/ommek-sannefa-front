@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
 import { DetailsComponent } from './recipes/details/details.component';
 import { SigninComponent } from './user/signin/signin.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
     path: 'claimDetails/:id',
     component: ClaimDetailsComponent,
   },
+  { path: 'users', component: UserComponent },
   {
     path: 'addClaim',
     component: AddClaimComponent,
