@@ -16,3 +16,72 @@ a.primary-btn:hover {
 a {
   cursor: pointer;
 }
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+.ps-search {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin: 5px 16px 5px;
+  font-size: 27px;
+  padding: 6px 7px 6px 7px;
+  color: #666666;
+}
+.ps-query-input {
+  height: 50px;
+  border-radius: 8px;
+  border: solid 1px#cccccc;
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.38;
+  letter-spacing: 0.1px;
+  color: #cccccc;
+  padding-left: 65px;
+  padding-right: 25px;
+  background-color: transparent;
+  margin-right: 10px;
+  /*box-shadow: inset 0 -1px 0 #ddd;*/
+}
+.ps-search-block {
+  margin-bottom: 0px;
+  position: relative;
+  transition: width ease 0.25s;
+}
+.ps-search-block .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+}
+.ps-query-input:hover,
+.ps-query-input:active,
+.ps-query-input:focus {
+  outline: 0px !important;
+  -webkit-appearance: none;
+  box-shadow: none !important;
+}
+.open-ps-search.ps-search-block {
+  width: 100% !important;
+}
+.close-ps-search.ps-search-block {
+  width: 80px !important;
+}
+.ps-query-input:focus {
+  border: 2px solid;
+}

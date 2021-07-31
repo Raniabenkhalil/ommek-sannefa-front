@@ -8,7 +8,6 @@ import { FooterComponent } from './footer/footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
 import { DetailsComponent } from './recipes/details/details.component';
-import { RecipesComponent } from './recipes/recipes.component';
 import { SigninComponent } from './user/signin/signin.component';
 
 const routes: Routes = [
@@ -36,7 +35,7 @@ const routes: Routes = [
       import('./modules/carousel/carousel.module').then(
         (mod) => mod.CarouselModule
       ),
-      component: CarouselComponent,
+    component: CarouselComponent,
   },
   { path: 'footer', component: FooterComponent },
 ];

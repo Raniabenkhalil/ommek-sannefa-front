@@ -36,8 +36,16 @@
             class="col-5"
             type="file"
             id="file"
-            name="avatar"
+            name="file"
             (change)="onFileSelect($event)"
+            accept="image/png, image/jpeg"
+          />
+          <input
+            type="text"
+            style="display: none"
+            id="image"
+            name="image"
+            formControlName="image"
             accept="image/png, image/jpeg"
           />
         </div>
@@ -186,7 +194,8 @@
             </tbody>
           </ng-template>
         </table>
-        <div class="alert alert-success" role="alert">
+        {{ test }}
+        <div *ngIf="test" class="alert alert-success" role="alert">
           you'r recipe is added successfully, waiting for approuvement from the
           admin
         </div>

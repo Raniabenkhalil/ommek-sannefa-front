@@ -26,9 +26,10 @@ export class RecipeService {
     );
   }
   addRecipe(recipe: Recipe) {
-    return this.httpClient
-      .post<Recipe>('http://192.168.1.12:8000/api/recipes', recipe)
-      .subscribe((response) => console.log(response));
+    return this.httpClient.post<Recipe>(
+      'http://192.168.1.12:8000/api/recipes',
+      recipe
+    );
   }
   getRecipeById(id): Observable<Recipe> {
     return this.httpClient.get<Recipe>(
@@ -36,11 +37,9 @@ export class RecipeService {
     );
   }
   uploadFile(formData) {
-    this.httpClient
-      .post<any>('http://192.168.1.12:8000/api/media_objects', formData)
-      .subscribe(
-        (res) => console.log(res),
-        (err) => console.log(err)
-      );
+    return this.httpClient.post<any>(
+      'http://192.168.1.12:8000/api/media_objects',
+      formData
+    );
   }
 }
