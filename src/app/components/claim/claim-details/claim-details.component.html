@@ -1,28 +1,24 @@
 <div class="single-post__leave__comment">
     <div class="widget__title">
-        <h4>Claim Details</h4>
+        <h4>Claim Form</h4>
     </div>
     <div class="container">
         <div class="col-lg-6 col-md-6">
             <div class="contact__form">
                 <form [formGroup]="claimForm">
                     <div class="form-group">
-                        <div class="row">
-                            <div *ngFor="let category of categories" class="p-field-checkbox" style="display:inline">
-                                <span class="col-md-4">
-                                    <label class='labelRadio' [for]="category.id">{{category.name}}</label>
-                                    <p-radioButton [inputId]="category.name" name="category" [value]="category"
-                                        formControlName="category">
-                                    </p-radioButton>
-                                </span>
-                            </div>
-                        </div>
+                        <select value="{{claim.category}}" class="form-select" id="category" name="category" formControlName="category">
+                            <option value="{{claim.category}}" disabled selected>{{claim.category}}</option>
+                            <option *ngFor="let category of categories">
+                                {{category}}
+                            </option>
+                        </select>
                         <div>
-                            <input type="text" [(ngModel)]="claim.title" placeholder="Claim title" formControlName="title">
+                            <input type="text" placeholder="Claim title" value="{{claim.title}}" formControlName="title">
                         </div>
                     </div>
-                    <textarea [(ngModel)]="claim.description" formControlName="description" placeholder="Description"></textarea>
-                    <button class="site-btn" type="submit" (click)="onSubmit()">Submit</button>
+                    <textarea formControlName="description" value="{{claim.description}}" placeholder="Description"></textarea>
+                    <button (click)="onSave()" type="submit" class="site-btn">Save</button>
                 </form>
             </div>
         </div>

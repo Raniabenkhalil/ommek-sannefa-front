@@ -1,0 +1,14 @@
+.form-select {
+    height: 46px;
+    width: 100%;
+    background: transparent;
+    border: 1px solid #e1e1e1;
+    font-size: 14px;
+    color: #444444;
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+  .site-btn:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }

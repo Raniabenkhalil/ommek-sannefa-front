@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { ClaimService } from 'src/app/services/claim.service';
 
 
 @Component({
@@ -9,17 +10,17 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 })
 export class AddClaimComponent implements OnInit {
   claimForm: FormGroup;
-  categories: any[] = [{name: 'Technical',code: 1},{name: 'Customer',code: 2},{name: 'Quality',code: 3}, {name: 'Other',code: 4}];
+  categories: any[] = ['Technical','Customer','Quality','Other'];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private claimService: ClaimService ) {
 
   }
   ngOnInit(): void {
 
     this.claimForm = new FormGroup({
-      title: new FormControl(''),
-      description: new FormControl(''),
-      category: new FormControl(''),
+      title: new FormControl('',Validators.required),
+      description: new FormControl('',Validators.required),
+      category: new FormControl('', Validators.required),
       status: new FormControl('')
     });
   }
@@ -35,7 +36,7 @@ export class AddClaimComponent implements OnInit {
  
   onSubmit(): void {
     const claim = this.claimForm.value;
-    console.log(this.claimForm);
-
+   this.claimService.save({...this.claimForm.getRawValue()}).subscribe(res=>{
+    alert('Claim added successfully');})
   }
 }

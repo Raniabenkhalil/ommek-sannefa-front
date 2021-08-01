@@ -12,6 +12,7 @@ export class Recipe {
   recipeIngredients: any;
   steps: string;
   reviews:any;
+  isActive: boolean;
 }
 export class Ingredients {
   id: string;

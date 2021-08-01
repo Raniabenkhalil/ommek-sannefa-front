@@ -11,7 +11,7 @@ import { ClaimService } from 'src/app/services/claim.service';
 })
 export class ClaimDetailsComponent implements OnInit {
   claimForm: FormGroup;
-  categories: any[] = [{name: 'Technical',code: 1},{name: 'Customer',code: 2},{name: 'Quality',code: 3}, {name: 'Other',code: 4}];
+  categories: any[] = ['Technical', 'Customer', 'Quality','Other'];
   claim: Claim;
   id;
   isEditable:boolean;
@@ -21,12 +21,7 @@ export class ClaimDetailsComponent implements OnInit {
   }
   ngOnInit(): void {
     this.id=this.route.snapshot.params['id']
-    this.claimForm = new FormGroup({
-      title: new FormControl(''),
-      description: new FormControl(''),
-      category: new FormControl(''),
-      status: new FormControl('')
-    });
+    this.createClaimForm();
 
   this.claimService.getClaimById(this.id).subscribe((element) => {
     this.claim = element;
@@ -42,9 +37,14 @@ export class ClaimDetailsComponent implements OnInit {
     }
 
  
-  onSubmit(): void {
-    const claim = this.claimForm.value;
-    console.log(this.claimForm);
-
+  onSave(): void {
+    const claim = {
+      id: this.claim.id,
+      title : this.claimForm.value.title,
+      description: this.claimForm.value.description,
+      category: this.claimForm.value.category
+    }
+    console.log(this.id);
+this.claimService.updateClaim(this.id,claim).subscribe(res=>console.log("done"));
   }
 }

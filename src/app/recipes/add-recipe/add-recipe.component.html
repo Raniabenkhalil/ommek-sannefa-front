@@ -24,6 +24,15 @@
           id="description"
           name="description"
         ></textarea>
+        <small
+          *ngIf="
+            description.errors?.required &&
+            (description.touched || description.dirty)
+          "
+          style="margin-top: -20px; font-size: 11px; margin-bottom: 11px"
+          class="form-text text-danger"
+          >The description is required</small
+        >
         <div class="row" style="height: 43px">
           <label
             for="avatar"
@@ -36,20 +45,18 @@
             class="col-5"
             type="file"
             id="file"
-            name="avatar"
+            name="file"
             (change)="onFileSelect($event)"
             accept="image/png, image/jpeg"
           />
+          <input
+            type="text"
+            style="display: none"
+            id="image"
+            accept="image/png, image/jpeg"
+          />
         </div>
-        <small
-          *ngIf="
-            description.errors?.required &&
-            (description.touched || description.dirty)
-          "
-          style="margin-top: -20px; font-size: 11px; margin-bottom: 11px"
-          class="form-text text-danger"
-          >The description is required</small
-        >
+
         <input
           type="number"
           min="0"
@@ -57,7 +64,12 @@
           formControlName="preparationTime"
         />
         <input type="number" min="0" placeholder="No. of Servings" />
-        <select class="form-select">
+        <select
+          class="form-select"
+          formControlName="difficulty"
+          name="difficulty"
+          id="difficulty"
+        >
           <option value="" disabled selected>Difficulty</option>
           <option value="Easy">Easy</option>
           <option value="Moderate">Moderate</option>
@@ -72,11 +84,6 @@
           <option value="" disabled selected>Dish Type</option>
           <option value="Main Dish">Main Dish</option>
           <option value="Side Dish">Side Dish</option>
-          <option value="Appetizer">Appetizer</option>
-          <option value="Soup">Soup</option>
-          <option value="Salad">Salad</option>
-          <option value="Dessert">Dessert</option>
-          <option value="Drink">Drink</option>
           <option value="Other">other</option>
         </select>
         <small
@@ -182,11 +189,17 @@
           </tbody>
           <ng-template #empty>
             <tbody>
-              No Data
+              No Ingredients
             </tbody>
           </ng-template>
         </table>
-        <div class="alert alert-success" role="alert">
+        <textarea
+          placeholder="Steps"
+          formControlName="steps"
+          id="steps"
+          name="steps"
+        ></textarea>
+        <div *ngIf="test" class="alert alert-success" role="alert">
           you'r recipe is added successfully, waiting for approuvement from the
           admin
         </div>

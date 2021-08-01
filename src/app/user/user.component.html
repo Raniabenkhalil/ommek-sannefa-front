@@ -1,0 +1,233 @@
+<table class="table container">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Civility</th>
+      <th scope="col">About me</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="users?.length > 0; else empty">
+    <tr *ngFor="let user of users">
+      <th scope="row">{{ user.firstName }}</th>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.civility }}</td>
+      <td>{{ user.aboutMe }}</td>
+      <td>
+        <a (click)="modalOn(user.id)"><i class="fa fa-edit"></i></a>
+        <a
+          (click)="deleteOn(user.id)"
+          data-toggle="modal"
+          data-target="#exampleModal"
+          ><i class="fa fa-trash"></i
+        ></a>
+      </td>
+    </tr>
+  </tbody>
+  <ng-template #empty>
+    <tbody>
+      No Users
+    </tbody>
+  </ng-template>
+</table>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">Are you sure you want to delete this user ?</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          No
+        </button>
+        <button type="button" (click)="delete()" class="btn btn-primary">
+          Yes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="signin" *ngIf="modal">
+  <div class="signin__warp">
+    <div class="signin__content">
+      <div class="signin__logo">
+        <a href="#"><img src="img/siign-in-logo.png" alt="" /></a>
+      </div>
+      <div class="signin__form">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              data-toggle="tab"
+              href="#tabs-1"
+              role="tab"
+              aria-selected="false"
+            >
+              Sign in
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              data-toggle="tab"
+              href="#tabs-2"
+              role="tab"
+              aria-selected="false"
+            >
+              Sign up
+            </a>
+          </li>
+          <li class="nav-item"></li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane active" id="tabs-1" role="tabpanel">
+            <div class="signin__form__text">
+              <form [formGroup]="userForm">
+                <input
+                  type="text"
+                  value="{{ userToEdit?.firstName }}"
+                  name="firstName"
+                  id="firstName"
+                  formControlName="firstName"
+                />
+                <small
+                  *ngIf="
+                    firstName.errors?.required &&
+                    (firstName.touched || firstName.dirty)
+                  "
+                  style="
+                    margin-top: -20px;
+                    font-size: 11px;
+                    margin-bottom: 11px;
+                    margin-left: -80%;
+                  "
+                  class="form-text text-danger"
+                  >First name is required</small
+                >
+                <input
+                  type="text"
+                  value="{{ userToEdit?.lastName }}"
+                  name="lastName"
+                  id="lastName"
+                  formControlName="lastName"
+                />
+                <small
+                  *ngIf="
+                    lastName.errors?.required &&
+                    (lastName.touched || lastName.dirty)
+                  "
+                  style="
+                    margin-top: -20px;
+                    font-size: 11px;
+                    margin-bottom: 11px;
+                    margin-left: -80%;
+                  "
+                  class="form-text text-danger"
+                  >Last name is required</small
+                >
+                <input
+                  type="text"
+                  placeholder="{{ userToEdit?.email }}"
+                  name="email"
+                  value="{{ userToEdit?.email }}"
+                  id="email"
+                  formControlName="email"
+                />
+                <small
+                  *ngIf="email.invalid && (email.touched || email.dirty)"
+                  style="
+                    margin-top: -20px;
+                    font-size: 11px;
+                    margin-bottom: 11px;
+                    margin-left: -69%;
+                  "
+                  class="form-text text-danger"
+                  >Email doesn't match the pattern !</small
+                >
+                <small
+                  *ngIf="
+                    email.errors?.required && (email.touched || email.dirty)
+                  "
+                  style="
+                    margin-top: -17px;
+                    font-size: 11px;
+                    margin-bottom: 11px;
+                    margin-left: -84%;
+                  "
+                  class="form-text text-danger"
+                  >Email is required</small
+                >
+                <select
+                  class="form-select"
+                  formControlName="civility"
+                  value="{{ userToEdit.civility }}"
+                  style="
+                    height: 46px;
+                    width: 100%;
+                    background: transparent;
+                    border: 1px solid #e1e1e1;
+                    font-size: 14px;
+                    color: #444444;
+                    padding-left: 20px;
+                    margin-bottom: 20px;
+                  "
+                >
+                  <option value="M" disabled selected>M</option>
+                  <option value="Mrs">Mrs</option>
+                  <option value="Miss">Miss</option>
+                  <option value="Ms">Ms</option>
+                </select>
+                <textarea
+                  placeholder="{{ userToEdit.aboutMe }}"
+                  value="{{ userToEdit.aboutMe }}"
+                  formControlName="aboutMe"
+                  id="aboutMe"
+                  name="aboutMe"
+                  [(ngModel)]="userToEdit.aboutMe"
+                  style="
+                    height: 85px;
+                    width: 100%;
+                    background: transparent;
+                    border: 1px solid #e1e1e1;
+                    font-size: 14px;
+                    color: #444444;
+                    padding-top: 12px;
+                    padding-left: 20px;
+                    margin-bottom: 14px;
+                    resize: none;
+                  "
+                ></textarea>
+
+                <button type="submit" (click)="edit()" class="site-btn">
+                  Save
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
