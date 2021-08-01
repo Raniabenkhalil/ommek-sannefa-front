@@ -29,6 +29,7 @@ import { ClaimDetailsComponent } from './components/claim/claim-details/claim-de
 
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UpdateReviewComponent } from './update-review/update-review.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DetailsComponent,
     ListClaimsComponent,
     ClaimDetailsComponent,
+    UpdateReviewComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -62,7 +64,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ButtonModule,
     HttpClientModule,
     RatingModule,
-    FormsModule],
+    FormsModule,
+  DialogModule],
   providers: [],
   bootstrap: [AppComponent],
 })

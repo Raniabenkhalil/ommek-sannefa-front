@@ -11,6 +11,7 @@ export class Recipe {
   servesNumPersons: number;
   recipeIngredients: any;
   steps: string;
+  reviews:any;
 }
 export class Ingredients {
   id: string;

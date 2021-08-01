@@ -1,0 +1,35 @@
+.comment{
+    font-size: 15px;
+    color: #ffffff;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: block;
+    padding: 13px 26px 12px;
+    background: #f4952f;
+    border: none;
+    
+    margin: 7px -1px;
+    width: auto;
+
+}
+    button, input, optgroup, select, textarea {
+        margin: 0;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        width: 100%;
+    }
+    .mdex-test.template-recipe .recipe-review-top-reviews .recipe-review-my-review {
+        padding: 36px 24px;
+        border-bottom: 1px solid rgba(0,0,0,.15);
+        display: flex;
+    }
+
+    p {
+        font-size: 14px;
+        font-family: "Nunito Sans", sans-serif;
+        color: #444444;
+        font-weight: initial;
+        line-height: 32px;
+        margin: 19px 0 15px 0;
+    }
