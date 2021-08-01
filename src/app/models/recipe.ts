@@ -11,6 +11,7 @@ export class Recipe {
   servesNumPersons: number;
   recipeIngredients: any;
   steps: string;
+  reviews:any;
   isActive: boolean;
 }
 export class Ingredients {

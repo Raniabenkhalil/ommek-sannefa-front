@@ -1,0 +1,18 @@
+<div class="single-post__leave__comment">
+    <div class="widget__title">
+        <h4>Review Form</h4>
+    </div>
+    <div class="container">
+        <div class="col-lg-6 col-md-6">
+            <div class="contact__form">
+                
+                        <div class="form-group">
+                            <textarea [(ngModel)] = "description" class="mb-30px"id="comment"  name="description" 
+                        cols="30" rows="4" placeholder="Votre commentaire ..."></textarea>   
+                        <button (click)="onSave()" type="submit" class="site-btn">Save</button>
+                    </div>
+                  
+            </div>
+        </div>
+    </div>
+</div>
