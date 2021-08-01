@@ -55,15 +55,11 @@
                             Check the recipe
                           </a>
                         </div>
-                        <!--
-                          "-->
+
                         <div
                           class="header__btn position"
                           style="padding-left: 5px"
-                          *ngIf="
-                            currentUser?.roles?.includes('ROLE_ADMIN') &&
-                            receipe.isActive === false
-                          "
+                          *ngIf="admin && receipe.isActive !== true"
                         >
                           <a
                             class="primary-btn add_custom"
@@ -129,6 +125,10 @@
 
                   <li>
                     <a (click)="filterByCategory('Other')">Other </a>
+                  </li>
+
+                  <li *ngIf="admin">
+                    <a (click)="tobeaproved()">To be approved </a>
                   </li>
                 </ul>
               </div>

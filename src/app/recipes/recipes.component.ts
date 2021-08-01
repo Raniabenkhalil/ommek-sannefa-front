@@ -12,11 +12,13 @@ export class RecipesComponent implements OnInit {
   recipes: Recipe[];
   deleteId;
   currentUser;
+  admin;
   constructor(private recipeService: RecipeService, private router: Router) {}
 
   ngOnInit(): void {
     this.filterByCategory('all');
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.admin = this.currentUser.roles.includes('ROLE_ADMIN');
   }
   details(recipeId) {
     this.router.navigate(['details/' + recipeId]);
@@ -24,14 +26,18 @@ export class RecipesComponent implements OnInit {
   filterByCategory(category) {
     this.recipeService.getRecipes(category).subscribe((next) => {
       this.recipes = next['hydra:member'];
-      if (this.currentUser.roles.includes('ROLE_USER')) {
+      if (this.currentUser.roles.includes('ROLE_ADMIN')) {
+        this.recipes = next['hydra:member'];
+      } else {
         this.recipes = this.recipes.filter((recipe) => recipe.isActive);
       }
     });
   }
   approuve(id) {
     var toto = { isActive: true };
-    this.recipeService.approuve(id, toto).subscribe();
+    this.recipeService
+      .approuve(id, toto)
+      .subscribe((res) => window.location.reload());
   }
   filterByUser() {
     this.recipeService.myRecipes(this.currentUser.id).subscribe((next) => {
@@ -41,9 +47,9 @@ export class RecipesComponent implements OnInit {
   modalOn(id) {
     this.deleteId = id;
   }
-  /*delete() {
-    this.recipes.
-    this.recipeService.deleteRecipe(this.deleteId).subscribe();
-    //window.location.reload();
-  }*/
+  tobeaproved() {
+    this.recipeService.tobeaproved().subscribe((next) => {
+      this.recipes = next['hydra:member'];
+    });
+  }
 }
