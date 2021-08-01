@@ -58,4 +58,9 @@ export class RecipeService {
       `http://192.168.1.12:8000/api/recipes/` + id
     );
   }
+  tobeaproved(): Observable<Recipe> {
+    return this.httpClient.get<Recipe>(
+      `http://192.168.1.12:8000/api/recipes?isActive=0`
+    );
+  }
 }
