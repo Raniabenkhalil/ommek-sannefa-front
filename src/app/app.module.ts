@@ -31,7 +31,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserComponent } from './user/user.component';
 import { SigninComponent } from './user/signin/signin.component';
-
+import { MessageService } from 'primeng';
+import {ToastModule} from 'primeng/toast'
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { SigninComponent } from './user/signin/signin.component';
     ClaimDetailsComponent,
     UserComponent,
     SigninComponent,
+
   ],
   imports: [
     BrowserAnimationsModule,
@@ -66,8 +68,11 @@ import { SigninComponent } from './user/signin/signin.component';
     ButtonModule,
     HttpClientModule,
     RatingModule,
-    FormsModule],
-  providers: [],
+    FormsModule,
+    ToastModule],
+  providers: [
+    MessageService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

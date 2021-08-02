@@ -13,17 +13,17 @@
             <div class="p-col-12">
                 <div class="product-list-item">
                     <div class="product-list-detail">
-                        <div class="product-name">{{claim.title}}</div>
-                        <div class="product-description">{{claim.description}}</div>
-                        <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{claim.category}}</span>
+                        <div class="product-name">Title:{{claim.title}}</div>
+                        <div class="product-description">Description:{{claim.description}}</div>
+                        <i class="pi pi-tag product-category-icon"></i><span class="product-category">Category:{{claim.claimCategory}}</span>
                     </div>
                     <div class="product-list-action">
-                        <span class="product-price">{{claim.status}}</span>
+                        <span class="product-price">Status:{{claim.status}}</span>
                         <div class="header__btn add_recipe">
-                            <a (click)="showDetails(claim.id)" class="primary-btn">Details</a>
-                            <a (click)="deleteClaim(claim.id)" class="primary-btn">Delete</a>
+                            <a (click)="showDetails(claim.id)" class="primary-btn fa fa-pencil-square-o ">Details</a>
+                            <a (click)="deleteClaim(claim.id)" class="primary-btn fa fa-trash-o">Delete</a>
                         </div>
-                        <span>{{claim.status}}</span>
+                        <span>{{claim.priority}}</span>
                     </div>
                 </div>
             </div>

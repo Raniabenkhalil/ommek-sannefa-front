@@ -12,6 +12,7 @@ import { ClaimService } from 'src/app/services/claim.service';
 export class ClaimDetailsComponent implements OnInit {
   claimForm: FormGroup;
   categories: any[] = ['Technical', 'Customer', 'Quality','Other'];
+  priorities: any[] = ['Blocker', 'Critical', 'Medium'];
   claim: Claim;
   id;
   isEditable:boolean;
@@ -31,8 +32,8 @@ export class ClaimDetailsComponent implements OnInit {
     this.claimForm = this.fb.group({
       title:['',[Validators.required]],
       description:['',[Validators.required]],
-      category:['',[Validators.required]],
-      status:['',[Validators.required]]
+      claimCategory:['',[Validators.required]],
+      priority:['',[Validators.required]],
     })
     }
 
@@ -42,9 +43,11 @@ export class ClaimDetailsComponent implements OnInit {
       id: this.claim.id,
       title : this.claimForm.value.title,
       description: this.claimForm.value.description,
-      category: this.claimForm.value.category
+      claimCategory: this.claimForm.value.claimCategory,
+      priority:this.claimForm.value.priority
     }
     console.log(this.id);
-this.claimService.updateClaim(this.id,claim).subscribe(res=>console.log("done"));
+this.claimService.updateClaim(this.id,claim).subscribe(res=>{
+  alert('Modifications saved successfully');})
   }
 }

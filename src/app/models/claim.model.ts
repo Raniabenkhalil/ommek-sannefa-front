@@ -5,6 +5,7 @@ export class Claim {
     response?: string;
     category?: string;
     status?: string;
+    priority?:string;
     creationDate?: string;
     updateDate?: string;
 }
