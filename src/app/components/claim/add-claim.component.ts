@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { MessageService } from 'primeng';
 import { ClaimService } from 'src/app/services/claim.service';
 
 
@@ -11,32 +12,28 @@ import { ClaimService } from 'src/app/services/claim.service';
 export class AddClaimComponent implements OnInit {
   claimForm: FormGroup;
   categories: any[] = ['Technical','Customer','Quality','Other'];
+  priorities: any[] = ['Blocker', 'Critical', 'Medium'];
 
-  constructor(private fb: FormBuilder, private claimService: ClaimService ) {
+  constructor(private fb: FormBuilder, private claimService: ClaimService , private messageService:MessageService) {
 
   }
   ngOnInit(): void {
-
-    this.claimForm = new FormGroup({
-      title: new FormControl('',Validators.required),
-      description: new FormControl('',Validators.required),
-      category: new FormControl('', Validators.required),
-      status: new FormControl('')
-    });
+  this.createClaimForm();
   }
   createClaimForm(){
     this.claimForm = this.fb.group({
       title:['',[Validators.required]],
       description:['',[Validators.required]],
-      category:['',[Validators.required]],
-      status:['',[Validators.required]]
+      claimCategory:['',[Validators.required]],
+      priority:['',[Validators.required]]
     })
     }
 
  
   onSubmit(): void {
     const claim = this.claimForm.value;
-   this.claimService.save({...this.claimForm.getRawValue()}).subscribe(res=>{
-    alert('Claim added successfully');})
+    this.claimService.save({...this.claimForm.getRawValue()}).subscribe(res=>{
+    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Claim Added Successfully', life: 3000 });;})
+    
   }
 }

@@ -7,10 +7,16 @@
             <div class="contact__form">
                 <form [formGroup]="claimForm">
                     <div class="form-group">
-                        <select value="{{claim.category}}" class="form-select" id="category" name="category" formControlName="category">
-                            <option value="{{claim.category}}" disabled selected>{{claim.category}}</option>
+                        <select value="{{claim.claimCategory}}" class="form-select" id="claimCategory" name="claimCategory" formControlName="claimCategory">
+                            <option value="{{claim.claimCategory}}" disabled selected>{{claim.claimCategory}}</option>
                             <option *ngFor="let category of categories">
                                 {{category}}
+                            </option>
+                        </select>
+                        <select value="{{claim.priority}}" class="form-select" id="priority" name="priority" formControlName="priority">
+                            <option value="{{claim.priority}}" disabled selected >{{claim.priority}}</option>
+                            <option *ngFor="let priority of priorities" value={{priority}}>
+                                {{priority}}
                             </option>
                         </select>
                         <div>
@@ -19,6 +25,7 @@
                     </div>
                     <textarea formControlName="description" value="{{claim.description}}" placeholder="Description"></textarea>
                     <button (click)="onSave()" type="submit" class="site-btn">Save</button>
+                    <p-toast></p-toast>
                 </form>
             </div>
         </div>

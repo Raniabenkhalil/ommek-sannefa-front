@@ -1,3 +1,7 @@
+@import '~primeicons/primeicons.css';
+@import '~primeng/resources/themes/nova-light/theme.css';
+@import '~primeng/resources/primeng.min.css';
+
 .section {
 	position: relative;
 	height: 100vh;
@@ -171,4 +175,7 @@
 .claim-form .submit-btn:hover,
 .claim-form .submit-btn:focus {
 	opacity: 0.9;
+}
+body .ui-table .ui-table-tbody > tr > td {
+    padding: 5px !important;
 }

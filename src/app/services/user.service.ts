@@ -13,7 +13,7 @@ const httpHeaders = {
   providedIn: 'root',
 })
 export class UserService {
-  api_url = 'http://192.168.1.12:8000/api';
+  api_url = 'http://127.0.0.1:8000/api';
   constructor(private myhttp: HttpClient) {}
   addUser(u: User) {
     return this.myhttp.post<User>(this.api_url + '/users', u);

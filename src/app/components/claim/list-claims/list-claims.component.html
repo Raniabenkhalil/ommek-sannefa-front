@@ -1,31 +1,93 @@
-<div class="card">
-    <p-dataView #dv [value]="claims" [paginator]="true" [rows]="9" filterBy="name">
-        <ng-template pTemplate="header">
-            <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
-                <span class="p-input-icon-left p-mb-2 p-mb-md-0">
-                    <i class="pi pi-search"></i>
-                    <input type="search" pInputText placeholder="Search by Name">
-                </span>
-                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-            </div>
-        </ng-template>
-        <ng-template let-claim pTemplate="listItem">
-            <div class="p-col-12">
-                <div class="product-list-item">
-                    <div class="product-list-detail">
-                        <div class="product-name">{{claim.title}}</div>
-                        <div class="product-description">{{claim.description}}</div>
-                        <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{claim.category}}</span>
-                    </div>
-                    <div class="product-list-action">
-                        <span class="product-price">{{claim.status}}</span>
-                        <div class="header__btn add_recipe">
-                            <a (click)="showDetails(claim.id)" class="primary-btn">Details</a>
-                            <a (click)="deleteClaim(claim.id)" class="primary-btn">Delete</a>
-                        </div>
-                        <span>{{claim.status}}</span>
-                    </div>
+
+
+    <div class="card">
+        <h5 class="card-header">List of Claims : </h5>
+        <div class="card-body">
+          
+            <p-table #dt [value]="claims" [(selection)]="claim" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
+            [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+            [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [filterDelay]="0" [globalFilterFields]="['name','claimCategory','description','priority']">
+            <ng-template pTemplate="caption">
+                <div class="table-header">
+                    
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Global Search" />
+                    </span>
                 </div>
-            </div>
-        </ng-template>
-    </p-dataView>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="name">Title <p-sortIcon field="title"></p-sortIcon></th>
+                    <th pSortableColumn="description">Category <p-sortIcon field="description"></p-sortIcon></th>
+
+                    <th pSortableColumn="priority">Priority <p-sortIcon field="priority"></p-sortIcon></th>
+                    <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>
+                    <th style="width: 8rem">Actions </th>
+                           </tr>
+                           <tr>
+                           
+                            <th>
+                                <input pInputText type="text" (input)="dt.filter($event.target.value, 'title', 'startsWith')" placeholder="Search by Title" class="p-column-filter">
+                            </th>
+                            <th>
+                                <input pInputText type="text" (input)="dt.filter($event.target.value, 'claimCategory', 'contains')" placeholder="Search by Category" class="p-column-filter">
+                            </th>
+                            <th>
+                                <p-multiSelect  [options]="priorities" placeholder="All" (onChange)="onPriorityChange($event)" styleClass="p-column-filter" optionLabel="name">
+                                    <ng-template let-option pTemplate="item">
+                                        <div class="p-multiselect-representative-option">
+                                            <span [class]="'customer-badge status-' + option.value">{{option.value}}</span>
+                                        </div>
+                                    </ng-template>
+                                </p-multiSelect>
+                            </th>
+                           
+                          
+                            <th>
+                                <input pInputText type="text" (input)="dt.filter($event.target.value, 'description', 'contains')" placeholder="Description" class="p-column-filter" >
+                            </th>
+                            <th></th>
+                        </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-claim>
+                <tr class="p-selectable-row">
+                    
+                    <td>
+                        <span class="p-column-title"> {{claim.title}}</span>
+                       
+                    </td>
+                    <td>
+                        <span class="p-column-title"></span>
+                        <span class="image-text">{{claim.claimCategory}}</span>
+                    </td>
+                    <td>
+                        <span class="p-column-title"></span>
+                        <span class="image-text">{{claim.priority}}</span>
+                    </td>
+                   
+                  
+                    <td>
+                        <span class="p-column-title"></span>
+                        <span class="image-text">{{claim.description}}</span>
+                    </td>
+                   
+    
+                    <td>
+                        <button pButton pRipple icon="pi pi-info-circle" class="p-button-rounded p-button-warning"  (click)="showDetails(claim.id)"></button>
+                        <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-alert" (click)="deleteClaim(claim.id)" ></button>
+                        </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="7">No customers found.</td>
+                </tr>
+            </ng-template>
+        </p-table> 
+    
+    
+    
+       </div>
+      </div>

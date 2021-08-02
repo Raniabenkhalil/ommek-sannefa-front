@@ -16,6 +16,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { HttpClientModule } from '@angular/common/http';
 import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
 import { DetailsComponent } from './recipes/details/details.component';
+import { UpdateReviewComponent } from './update-review/update-review.component';
 
 import { ListClaimsComponent } from './components/claim/list-claims/list-claims.component';
 import {DataViewModule} from 'primeng/dataview';
@@ -29,10 +30,14 @@ import { ClaimDetailsComponent } from './components/claim/claim-details/claim-de
 
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UpdateReviewComponent } from './update-review/update-review.component';
 import { UserComponent } from './user/user.component';
 import { SigninComponent } from './user/signin/signin.component';
- 
+import {TableModule} from 'primeng/table';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {ToastModule} from 'primeng/toast'
+import { MessageService } from 'primeng';
+
+
 
 
 @NgModule({
@@ -50,9 +55,9 @@ import { SigninComponent } from './user/signin/signin.component';
     DetailsComponent,
     ListClaimsComponent,
     ClaimDetailsComponent,
-    UpdateReviewComponent,
     UserComponent,
     SigninComponent,
+    UpdateReviewComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -70,8 +75,11 @@ import { SigninComponent } from './user/signin/signin.component';
     HttpClientModule,
     RatingModule,
     FormsModule,
-  DialogModule],
-  providers: [],
+    TableModule,
+    MultiSelectModule,
+    ToastModule
+  ],
+  providers: [MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
