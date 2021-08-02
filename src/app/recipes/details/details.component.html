@@ -2,6 +2,7 @@
 <section class="single-post spad">
   <img
     *ngIf="recipe?.image"
+    src="http://192.168.1.12:8000/{{ recipe?.image.contentUrl }}"
     class="single-post__hero set-bg"
     style="width: 100%"
   />
@@ -100,78 +101,89 @@
     </div>
   </div>
 
-
-<div class="container">
-  <div class="row d-flex justify-content-center">
-
+  <div class="container">
+    <div class="row d-flex justify-content-center">
       <div class="col-lg-8">
-
-          <div class="single-post__author__profile">
-              <div class="single-post__author__profile__pic">
-              </div>
-              <div id="textarea" class="single-post__author__profile__text">
-                <textarea class="mb-30px"  id="comment" name="description" [(ngModel)]="r.description"
-                cols="30" rows="4" placeholder="Votre commentaire ..."></textarea>
-          <button   (click)="addReviews()"class="site-btn comment">Post comment</button>
-          
-              </div>
+        <div class="single-post__author__profile">
+          <div class="single-post__author__profile__pic"></div>
+          <div id="textarea" class="single-post__author__profile__text">
+            <textarea
+              class="mb-30px"
+              id="comment"
+              name="description"
+              [(ngModel)]="r.description"
+              cols="30"
+              rows="4"
+              placeholder="Votre commentaire ..."
+            ></textarea>
+            <button (click)="addReviews()" class="site-btn comment">
+              Post comment
+            </button>
           </div>
-          <div class="single-post__comment">
-              <div class="widget__title">
-                  <h4>08 Comment</h4>
-              </div>
-              <div class="single-post__comment__item">
-                  <div class="single-post__comment__item__pic">
-                  </div>
-                  <div class="single-post__comment__item__text">
-                     
-
-
-                      <ul>
-                          <li><a (click)="remove(id)" class="fa fa-trash-o"></a></li>
-                          <li><a  class="fa fa-pencil-square-o"></a></li>
-
-                      </ul>
-                  </div>
-              </div>
-              <div class="single-post__comment__item single-post__comment__item--reply">
-                  <div class="single-post__comment__item__pic">
-                  </div>
-              </div>
-                    <div *ngFor= "let rev of recipe?.reviews">
-
-              <div class="single-post__comment__item">
-
-                  <div class="single-post__comment__item__pic">
-
-                    <div class="recipe-review-add-review-icon"><svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" aria-hidden="true"><path fill="#685F55" d="M12.007 5.876c-.374 0-.744.07-1.109.212a4.102 4.102 0 0 0-.985.54 3.148 3.148 0 0 0-.705.712c-.178.256-.267.497-.267.725v2.19c0 .429.108.976.322 1.642s.55 1.182 1.006 1.547a.869.869 0 0 1 .328.794c-.027.146-.084.28-.17.403a.835.835 0 0 1-.336.28l-3.846 1.82a.959.959 0 0 0-.225.13c-.096.07-.144.195-.144.377v.89l12.248-.014v-.848c0-.238-.057-.386-.17-.445a1.43 1.43 0 0 0-.186-.09l-3.818-1.806a.887.887 0 0 1-.445-1.142.844.844 0 0 1 .267-.35c.475-.364.81-.882 1.006-1.552.196-.671.294-1.216.294-1.636v-2.19c0-.237-.09-.483-.273-.739-.183-.255-.418-.49-.705-.704s-.616-.393-.985-.534a3.065 3.065 0 0 0-1.102-.212z"></path></svg> </div>
-                  </div>
-                  
-                  <div class="single-post__comment__item__text">
-
-                      <p> 
-  
-                          {{rev?.description}}                                   
-                          </p>
-      
-                      <ul>
-
-                          <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
-                          <li><a (click)="deleteReview(rev.id)" class="fa fa-trash-o"></a></li>
-                          <li><a routerLink="/update/{{rev.id}}"  class="fa fa-pencil-square-o"></a></li>
-
-                      </ul>
-
-                      
-                  </div>                
+        </div>
+        <div class="single-post__comment">
+          <div class="widget__title">
+            <h4>08 Comment</h4>
+          </div>
+          <div class="single-post__comment__item">
+            <div class="single-post__comment__item__pic"></div>
+            <div class="single-post__comment__item__text">
+              <ul>
+                <li>
+                  <a (click)="deleteReview(id)" class="fa fa-trash-o"></a>
+                </li>
+                <li><a class="fa fa-pencil-square-o"></a></li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="single-post__comment__item single-post__comment__item--reply"
+          >
+            <div class="single-post__comment__item__pic"></div>
+          </div>
+          <div *ngFor="let rev of recipe?.reviews">
+            <div class="single-post__comment__item">
+              <div class="single-post__comment__item__pic">
+                <div class="recipe-review-add-review-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="64"
+                    height="64"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill="#685F55"
+                      d="M12.007 5.876c-.374 0-.744.07-1.109.212a4.102 4.102 0 0 0-.985.54 3.148 3.148 0 0 0-.705.712c-.178.256-.267.497-.267.725v2.19c0 .429.108.976.322 1.642s.55 1.182 1.006 1.547a.869.869 0 0 1 .328.794c-.027.146-.084.28-.17.403a.835.835 0 0 1-.336.28l-3.846 1.82a.959.959 0 0 0-.225.13c-.096.07-.144.195-.144.377v.89l12.248-.014v-.848c0-.238-.057-.386-.17-.445a1.43 1.43 0 0 0-.186-.09l-3.818-1.806a.887.887 0 0 1-.445-1.142.844.844 0 0 1 .267-.35c.475-.364.81-.882 1.006-1.552.196-.671.294-1.216.294-1.636v-2.19c0-.237-.09-.483-.273-.739-.183-.255-.418-.49-.705-.704s-.616-.393-.985-.534a3.065 3.065 0 0 0-1.102-.212z"
+                    ></path>
+                  </svg>
                 </div>
               </div>
+
+              <div class="single-post__comment__item__text">
+                <p>
+                  {{ rev?.description }}
+                </p>
+
+                <ul>
+                  <li>
+                    <a href="#"><i class="fa fa-heart-o"></i></a>
+                  </li>
+                  <li>
+                    <a (click)="deleteReview(rev.id)" class="fa fa-trash-o"></a>
+                  </li>
+                  <li>
+                    <a
+                      routerLink="update/{{ rev.id }}"
+                      class="fa fa-pencil-square-o"
+                    ></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-        
-
-      </div>  
-
+        </div>
+      </div>
+    </div>
   </div>
-</div>            
-
 </section>
